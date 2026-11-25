@@ -1,6 +1,6 @@
 # Proof / 7 Days
 
-A lightweight, mobile-friendly, no-backend learning adventure for the Proof cohort. Day 1 (Blackout Protocol) is playable; Days 2–7 are visible as coming-soon mission cards.
+A lightweight, mobile-friendly, no-backend learning adventure for the Proof cohort. Play Day 1 (Blackout Protocol) and Day 2 (Algorithm Detective) from the mission board.
 
 ## Start locally
 
@@ -22,16 +22,17 @@ Open the local URL printed by Vite (usually http://localhost:5173).
 ## How it works
 
 - Name entry (only used to personalize the site).
-- Seven-day mission selection; Day 1 is playable, others are coming soon.
+- Days 1 and 2 are playable from the start. Days 3–7 are coming soon.
 - Day 1 has briefing, investigation (click buildings), energy-allocation planning, a comparison of restoration outcomes, and a problem decomposition exercise.
+- Day 2 compares a linear scan and a search that uses sorted locker numbers to narrow the range.
 - Optional hints, replayable strategies, a Day 1 flag card, and a copyable Proof log.
-- `localStorage` saves only the entered name and a Day 1 completion flag on the same browser. **No answers, marks, accounts, or leaderboard are saved or transmitted.**
-- Day 1's attempts and answers remain only in the page's memory until refreshed or replayed.
+- `localStorage` saves only the entered name and mission completion flags on the same browser. **No answers, marks, accounts, or leaderboard are saved or transmitted.**
+- Attempts and answers stay in page memory and reset when the page reloads or the mission is replayed.
 
 ## Customize
 
 - Edit `days` and `services` in `src/main.jsx` to update content.
-- Add Day 2+ screens by extending the mission selection and stage logic.
+- Add missions by extending the mission selection in `src/main.jsx`.
 - The illustrated city is an inline SVG in `City`, so it requires no external image assets.
 - Fonts are loaded from Google Fonts; if offline, system font fallbacks will be used.
 

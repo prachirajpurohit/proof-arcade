@@ -17,3 +17,27 @@
 @media (max-width: 530px) {
   .outcome-actions button { width: 100%; white-space: normal; }
 }
+
+.locker-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(52px, 1fr));
+  gap: 8px;
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+.locker-grid :is(span, button) {
+  display: grid;
+  place-items: center;
+  width: 100%;
+  min-height: 48px;
+  border: 1px solid #37536a;
+  border-radius: 8px;
+  background: #1b2e42;
+  color: #e9f3ff;
+}
+.locker-grid .inspected span { background: #1b4a4a; border-color: #4f9d8c; }
+.locker-grid button:hover:not(:disabled) { border-color: #80e5c5; }
+.search-question { border: 0; padding: 0; margin: 0; }
+.search-question legend { font-weight: 700; margin-bottom: 12px; }
+.search-question label { display: inline-flex; align-items: center; gap: 6px; margin-right: 18px; min-height: 32px; }
