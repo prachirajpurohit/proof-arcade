@@ -41,3 +41,19 @@
 .search-question { border: 0; padding: 0; margin: 0; }
 .search-question legend { font-weight: 700; margin-bottom: 12px; }
 .search-question label { display: inline-flex; align-items: center; gap: 6px; margin-right: 18px; min-height: 32px; }
+
+.bug-case {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  border: 1px solid #31485e;
+  border-radius: 10px;
+  padding: 16px;
+}
+.bug-case h3 { margin: 0; font-size: 20px; }
+.bug-case p { margin: 5px 0 0; }
+.bug-case [role="status"] { min-height: 1.75em; }
+.booking-rule { padding: 12px; background: #091321; border-radius: 8px; color: #8ae6c9; }
+.booking-options label { display: flex; margin-right: 0; }

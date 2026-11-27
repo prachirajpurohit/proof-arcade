@@ -1,5 +1,6 @@
 import React,{useEffect,useState} from 'react';import{createRoot}from'react-dom/client';import{ArrowLeft,ArrowRight,RotateCcw,Check,Lock,Lightbulb,Zap,Radio,HeartPulse,Droplets,TrafficCone,Store,Menu,ShieldCheck,AlertTriangle,ChevronRight,Info,Flag,Map,BookOpen,Copy}from'lucide-react';import './style.css';
 import AlgorithmDetective from './AlgorithmDetective.jsx';
+import BugHunters from './BugHunters.jsx';
 
 const energyBudget = 10;
 const services = [
@@ -138,15 +139,17 @@ function App() {
   const [feedback, setFeedback] = useState('');
   const [completed, setCompleted] = useState(() => read('proof7-completed', false));
   const [day2Completed, setDay2Completed] = useState(() => read('proof7-day2-completed', false));
+  const [day3Completed, setDay3Completed] = useState(() => read('proof7-day3-completed', false));
   const [showGuide, setShowGuide] = useState(false);
   const { used } = getOutcome(chosen);
-  const missionActions = [start, () => setScreen('day2')];
-  const missionCompletions = [completed, day2Completed];
+  const missionActions = [start, () => setScreen('day2'), () => setScreen('day3')];
+  const missionCompletions = [completed, day2Completed, day3Completed];
   const completedCount = missionCompletions.filter(Boolean).length;
 
   useEffect(() => { localStorage.setItem('proof7-name', JSON.stringify(name)); }, [name]);
   useEffect(() => { localStorage.setItem('proof7-completed', JSON.stringify(completed)); }, [completed]);
   useEffect(() => { localStorage.setItem('proof7-day2-completed', JSON.stringify(day2Completed)); }, [day2Completed]);
+  useEffect(() => { localStorage.setItem('proof7-day3-completed', JSON.stringify(day3Completed)); }, [day3Completed]);
 
   function start() {
     setStage(0);
@@ -214,6 +217,7 @@ function App() {
   <p className="fine hub-note">New missions will be added throughout the week. Previous missions stay available to replay.</p>
 </div>}
 {screen === 'day2' && <AlgorithmDetective onBoard={() => setScreen('hub')} onComplete={() => setDay2Completed(true)}/>}
+{screen === 'day3' && <BugHunters onBoard={() => setScreen('hub')} onComplete={() => setDay3Completed(true)}/>}
 {screen==='mission'&&<div className="shell mission"><div className="mission-top"><button className="back" onClick={()=>setScreen('hub')}><ArrowLeft size={16}/> Mission board</button><span className="mission-label">DAY 01 <span> / </span> BLACKOUT PROTOCOL</span><button className="back" onClick={()=>setShowGuide(!showGuide)}><Info size={16}/> Help</button></div>{showGuide&&<div className="help"><b>How to play:</b> Explore the city, try different restoration plans, and compare what happens. Bring your reasoning to class. When you finish, you can copy your answers into your Proof log.</div>}<div className="stepper">{['Briefing','Investigate','Plan','Outcome','Break it down'].map((s,i)=><div key={s} className={'step '+(stage===i?'current':stage>i?'past':'')}><span>{stage>i?<Check size={12}/>:i+1}</span><small>{s}</small></div>)}</div>
 {stage===0&&<div className="two-col"><div className="story"><div className="eyebrow amber"><AlertTriangle size={15}/> EMERGENCY TRANSMISSION</div><h1>The city<br/>has gone <em>dark.</em></h1><p>A sudden blackout has cut power to five city services. You're the emergency engineer on duty.</p><p>You've got <strong>10 energy units</strong>—but restoring everything would require 17. You'll need to investigate, prioritize, and rethink your plan when new information arrives.</p><div className="brief-box"><span>YOUR OBJECTIVE</span><b>Make a plan you can explain.</b><small>Take your time. Explore, experiment, and explain why.</small></div><button className="primary" onClick={next}>Begin investigation <ArrowRight size={18}/></button></div><City/></div>}
 {stage===1&&<><div className="stage-heading"><div className="eyebrow">PHASE 01 / INVESTIGATE</div><h2>What are we dealing with?</h2><p>Click each building to inspect its purpose and energy cost. Find all five before continuing.</p></div><div className="two-col investigation"><City onSelect={id=>{setFocus(id);setVisited(v=>v.includes(id)?v:[...v,id])}} selected={focus}/><div className="panel"><div className="eyebrow">SYSTEM INSPECTOR</div>{(()=>{let s=services.find(v=>v.id===focus),Icon=s.icon;return <><div className="inspector-icon"><Icon size={28}/></div><h3>{s.name}</h3><p>{s.detail}</p><div className="stat-line"><span>Restoration cost</span><b>{s.cost} energy units</b></div><div className="stat-line"><span>Investigation</span><b>{visited.includes(s.id)?'Inspected':'Not yet inspected'}</b></div></>})()}<div className="discovered"><span>{visited.length} / 5 SYSTEMS INVESTIGATED</span><div className="meter"><div style={{width:`${visited.length*20}%`}}/></div></div><button className="primary full" disabled={visited.length<5} onClick={next}>Create your plan <ArrowRight size={18}/></button></div></div></>}

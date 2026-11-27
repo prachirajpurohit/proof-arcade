@@ -1,6 +1,6 @@
 # Proof / 7 Days
 
-A lightweight, mobile-friendly, no-backend learning adventure for the Proof cohort. Play Day 1 (Blackout Protocol) and Day 2 (Algorithm Detective) from the mission board.
+A lightweight, mobile-friendly, no-backend learning adventure for the Proof cohort.
 
 ## Start locally
 
@@ -22,9 +22,10 @@ Open the local URL printed by Vite (usually http://localhost:5173).
 ## How it works
 
 - Name entry (only used to personalize the site).
-- Days 1 and 2 are playable from the start. Days 3–7 are coming soon.
+- Days 1–3 are playable from the start. Days 4–7 are coming soon.
 - Day 1 has briefing, investigation (click buildings), energy-allocation planning, a comparison of restoration outcomes, and a problem decomposition exercise.
 - Day 2 compares a linear scan and a search that uses sorted locker numbers to narrow the range.
+- Day 3 reproduces a ticket-booking bug, changes the comparison rule, and checks the fix against three cases.
 - Optional hints, replayable strategies, a Day 1 flag card, and a copyable Proof log.
 - `localStorage` saves only the entered name and mission completion flags on the same browser. **No answers, marks, accounts, or leaderboard are saved or transmitted.**
 - Attempts and answers stay in page memory and reset when the page reloads or the mission is replayed.
